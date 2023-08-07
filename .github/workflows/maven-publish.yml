@@ -5,13 +5,13 @@ name: Docker Build & Push
 on:
   push:
     branches:
-      - main
+      - master
 
  
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
  
 

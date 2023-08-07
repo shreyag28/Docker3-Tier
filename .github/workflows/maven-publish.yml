@@ -29,7 +29,10 @@ jobs:
  
 
       - name: Install Dependencies
-        run: cd angular && npm install
+        run: |
+             cd angular
+             npm install
+             
 
  
 

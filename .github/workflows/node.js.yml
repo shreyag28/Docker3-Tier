@@ -27,7 +27,7 @@ jobs:
 
     - run:  | 
              cd angular
-             docker build -t alm-maturity-qa:8082/astha-github-actions/angular_app:1.0 .
+             docker build -t 172.27.59.80:8082/astha-github-actions/angular_app:1.0 .
              docker login -u alm -p Cybage@123 alm-maturity-qa:8082
-             docker push alm-maturity-qa:8082/astha-github-actions/astha-github-actions:1.0
+             docker push 172.27.59.80:8082/astha-github-actions/astha-github-actions:1.0
     

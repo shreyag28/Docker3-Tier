@@ -29,18 +29,8 @@ jobs:
  
 
       - name: Install Dependencies
-        run: npm install
+        run: cd angular && npm install
 
  
 
       - name: Build Angular App
-        run: npm run build --prod
-
- 
-
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: your-docker-hub-username/your-angular-app-name:latest

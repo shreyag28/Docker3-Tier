@@ -25,7 +25,6 @@ jobs:
             npm install
             npm run build --if-present
 
-    - name: Build and Push Docker Image
     - run:  | 
              cd angular
              docker build -t alm-maturity-qa:8082/astha-github-actions/angular_app:1.0 .

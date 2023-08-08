@@ -23,8 +23,8 @@ services:
     ports:
       - 8085:8080
     depends_on:
-      - spring_astha_database:
-                        condition: service_healthy
+      spring_astha_database:
+                  condition: service_healthy
                        
     environment:      
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_name?useSSL=false      

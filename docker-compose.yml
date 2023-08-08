@@ -23,7 +23,9 @@ services:
     ports:
       - 8085:8080
     depends_on:
-      - spring_astha_database
+      spring_astha_database:
+                             condition: service_healthy
+                             restart: true
    
 
     environment:      
@@ -31,7 +33,8 @@ services:
       SPRING_DATASOURCE_USERNAME: astha      
       SPRING_DATASOURCE_PASSWORD: astha
     
-    command: ["sh", "-c", "while ! nc -z spring_astha_database 3306; do sleep 1; done && java -jar app.jar"]  
+    #command: ["sh", "-c", "while ! nc -z spring_astha_database 3306; do sleep 1; done && java -jar app.jar"]  
+   
     
     networks:
      - asthaNetwork

@@ -6,9 +6,9 @@ services:
     container_name: database
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: company   
-      MYSQL_USER: pradeep
-      MYSQL_PASSWORD: pradeep
+      MYSQL_DATABASE: employee_management_system   
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     ports:
       - 3306:3306
     volumes:
@@ -17,29 +17,23 @@ services:
      - backendNetwork
      
   spring-boot-ems:
-    image: openjdk:10-jre-slim
+    image: 172.27.59.80:8082/astha-github-actions/spring_app:1.0
     container_name: spring-boot-ems
     ports:
-      - 8080:8080
+      - 8085:8080
     depends_on:
       - database
-    volumes:
-      - ./spring-boot-ems/target/spring-boot-ems-0.0.1-SNAPSHOT.jar:/application.jar
-    command: ["java", "-jar", "application.jar"]
     networks:
       - backendNetwork
       - frontendNetwork
       
   angular:
-    image: nginx:alpine
+    image: 172.27.59.80:8082/astha-github-actions/angular_app:1.0
     container_name: angular
     ports: 
       - 4200:80
     depends_on:
       - spring-boot-ems
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./angular/dist/angular/:/usr/share/nginx/html
     networks:
       - frontendNetwork
 

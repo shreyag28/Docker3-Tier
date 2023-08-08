@@ -70,9 +70,9 @@ jobs:
     #          docker push 172.27.59.80:8082/astha-github-actions/spring_app:1.0   
              
     - run: |
-            docker rm spring-boot-ems
-            docker rm spring_astha_database
-            docker rm angular
+            docker rm -f spring-boot-ems
+            docker rm -f spring_astha_database
+            docker rm -f angular
             docker-compose up        
              
     

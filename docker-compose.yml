@@ -5,10 +5,9 @@ services:
     image: mysql
     container_name: spring_astha_database
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: employee_management_system   
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+    
     ports:
       - 3308:3306
     volumes:

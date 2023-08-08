@@ -32,7 +32,7 @@ services:
                   condition: service_healthy
                        
     environment:      
-      SPRING_DATASOURCE_URL: jdbc:mysql://spring_astha_database:3306/employee_management_system?useSSL=false      
+      SPRING_DATASOURCE_URL: jdbc:mysql://spring_astha_database:3306/employee_management_system?allowPublicKeyRetrieval=true&useSSL=false      
       SPRING_DATASOURCE_USERNAME: astha      
       SPRING_DATASOURCE_PASSWORD: astha
     

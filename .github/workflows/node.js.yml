@@ -16,7 +16,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js 
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v3
+      env:
+          cache-name: cache-node-modules
+      with:
+          path: ~/.npm
+          key: node-module-cache
+          restore-keys: node-module-cache
+                 
+    - name: Use Node.js       
       uses: actions/setup-node@v3
       with:
         node-version: '14.x'
@@ -35,6 +45,15 @@ jobs:
       with:
        distribution: 'temurin'
        java-version: '11'
+    - name: Cache node modules
+      id: maven-cache
+      uses: actions/cache@v3
+      env:
+          cache-name: cache-maven-dependencies
+      with:
+          path: ~/.m2
+          key: maven-cache
+          restore-keys: maven-cache   
     - run: |
             cd spring-boot-ems
             mvn clean install

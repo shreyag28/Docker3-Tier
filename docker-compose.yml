@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: employee_management_system
       MYSQL_USER: astha
-      MYSQL_PASSWORD: root
+      MYSQL_PASSWORD: astha
        
     ports:
       - 3308:3306
@@ -28,8 +28,8 @@ services:
 
     environment:      
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_name?useSSL=false      
-      SPRING_DATASOURCE_USERNAME: root      
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_USERNAME: astha      
+      SPRING_DATASOURCE_PASSWORD: astha
     
     command: ["sh", "-c", "while ! nc -z spring_astha_database 3306; do sleep 1; done && java -jar app.jar"]  
     

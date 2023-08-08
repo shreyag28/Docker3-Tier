@@ -43,7 +43,7 @@ services:
      - asthaNetwork
       
   angular:
-    image: 172.27.59.80:8082/astha-github-actions/angular_app:55
+    image: 172.27.59.80:8082/astha-github-actions/angular_app:56
     container_name: angular
     ports: 
       - 4200:80

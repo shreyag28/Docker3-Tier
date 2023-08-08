@@ -9,6 +9,11 @@ services:
       MYSQL_DATABASE: employee_management_system
       MYSQL_USER: astha
       MYSQL_PASSWORD: astha
+      healthcheck:      
+      test: ["CMD", "mysqladmin", "ping", "-h", "spring_astha_database"]  # Or use the hostname of your MySQL container      
+      interval: 10s      
+      timeout: 5s      
+      retries: 3  
        
     ports:
       - 3308:3306

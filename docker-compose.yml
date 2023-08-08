@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  database:
+  spring_astha_database:
     image: mysql
-    container_name: database
+    container_name: spring_astha_database
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: employee_management_system   

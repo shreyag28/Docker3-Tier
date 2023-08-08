@@ -67,4 +67,6 @@ jobs:
              docker login -u admin -p Cybage@123 http://172.27.59.80:8082
              docker push 172.27.59.80:8082/astha-github-actions/spring_app:1.0   
              
+    - run: docker-compose up         
+             
     

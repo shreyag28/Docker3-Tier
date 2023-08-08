@@ -9,14 +9,13 @@ services:
       MYSQL_DATABASE: employee_management_system
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-      
-    
+       
     ports:
       - 3308:3306
     volumes:
      - dockerAngularSpringDatabaseData:/var/lib/mysql
     networks:
-     - backendNetwork
+     - asthaNetwork
      
   spring-boot-ems:
     image: 172.27.59.80:8082/astha-github-actions/spring_app:1.0
@@ -34,8 +33,7 @@ services:
   command: ["sh", "-c", "while ! nc -z spring_astha_database 3306; do sleep 1; done && java -jar app.jar"]  
     
     networks:
-      - backendNetwork
-      - frontendNetwork
+     - asthaNetwork
       
   angular:
     image: 172.27.59.80:8082/astha-github-actions/angular_app:1.0
@@ -45,12 +43,11 @@ services:
     depends_on:
       - spring-boot-ems
     networks:
-      - frontendNetwork
+      - asthaNetwork
 
 
 volumes:
   dockerAngularSpringDatabaseData:
   
 networks:
-  backendNetwork:
-  frontendNetwork:
+  asthaNetwork:

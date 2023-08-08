@@ -42,9 +42,9 @@ jobs:
 
     - run:  | 
              cd angular
-             docker build -t 172.27.59.80:8082/astha-github-actions/angular_app:1.0 .
+             docker build -t 172.27.59.80:8082/astha-github-actions/angular_app:${{ github.run_number }} .
              docker login -u admin -p Cybage@123 http://172.27.59.80:8082
-             docker push 172.27.59.80:8082/astha-github-actions/angular_app:1.0
+             docker push 172.27.59.80:8082/astha-github-actions/angular_app:${{ github.run_number }}
  
     # - uses: actions/setup-java@v3
     #   with:

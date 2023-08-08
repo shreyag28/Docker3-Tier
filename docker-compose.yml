@@ -7,7 +7,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: employee_management_system
-      MYSQL_USER: root
+      MYSQL_USER: astha
       MYSQL_PASSWORD: root
        
     ports:

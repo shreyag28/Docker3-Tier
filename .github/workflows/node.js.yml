@@ -34,8 +34,8 @@ jobs:
           cache-name: cache-node-modules
       with:
           path: ~/.npm
-          key: ${{ env.cache-name }}
-          restore-keys: ${{ env.cache-name }}
+          key: Cache_Node_Modules
+          restore-keys: Cache_Node_Modules
            
                  
     - name: Use Node.js       
@@ -57,7 +57,7 @@ jobs:
       with:
        distribution: 'temurin'
        java-version: '11'
-    - name: Cache node modules
+    - name: Cache Maven Dependencies
       id: maven-cache
       uses: actions/cache@v3
       env:

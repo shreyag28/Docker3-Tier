@@ -27,18 +27,16 @@ jobs:
     - uses: actions/checkout@v3
       with:      
            token: ${{ secrets.GH_PAT }}
-    # - name: Cache node modules
-    #   id: cache-npm
-    #   uses: actions/cache@v3
-    #   env:
-    #       cache-name: cache-node-modules
-    #   with:
-    #       path: ~/.npm
-    #       key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-    #       restore-keys: |
-    #         ${{ runner.os }}-build-${{ env.cache-name }}-
-    #         ${{ runner.os }}-build-
-    #         ${{ runner.os }}-
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v3
+      env:
+          cache-name: cache-node-modules
+      with:
+          path: ~/.npm
+          key: ${{ env.cache-name }}
+          restore-keys: ${{ env.cache-name }}
+           
                  
     - name: Use Node.js       
       uses: actions/setup-node@v3
@@ -55,28 +53,28 @@ jobs:
              docker login -u admin -p Cybage@123 http://172.27.59.80:8082
              docker push 172.27.59.80:8082/astha-github-actions/angular_app:${{ github.run_number }}
  
-    # - uses: actions/setup-java@v3
-    #   with:
-    #    distribution: 'temurin'
-    #    java-version: '11'
-    # - name: Cache node modules
-    #   id: maven-cache
-    #   uses: actions/cache@v3
-    #   env:
-    #       cache-name: cache-maven-dependencies
-    #   with:
-    #       path: ~/.m2
-    #       key: maven-cache
-    #       restore-keys: maven-cache   
-    # - run: |
-    #         cd spring-boot-ems
-    #         mvn clean install
+    - uses: actions/setup-java@v3
+      with:
+       distribution: 'temurin'
+       java-version: '11'
+    - name: Cache node modules
+      id: maven-cache
+      uses: actions/cache@v3
+      env:
+          cache-name: cache-maven-dependencies
+      with:
+          path: ~/.m2
+          key: maven-cache
+          restore-keys: maven-cache   
+    - run: |
+            cd spring-boot-ems
+            mvn clean install
 
-    # - run:  | 
-    #          cd spring-boot-ems
-    #          docker build -t 172.27.59.80:8082/astha-github-actions/spring_app:1.0 .
-    #          docker login -u admin -p Cybage@123 http://172.27.59.80:8082
-    #          docker push 172.27.59.80:8082/astha-github-actions/spring_app:1.0   
+    - run:  | 
+             cd spring-boot-ems
+             docker build -t 172.27.59.80:8082/astha-github-actions/spring_app:${{ github.run_number }} .
+             docker login -u admin -p Cybage@123 http://172.27.59.80:8082
+             docker push 172.27.59.80:8082/astha-github-actions/spring_app:${{ github.run_number }}  
              
     - run: |
             docker rm -f spring-boot-ems

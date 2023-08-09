@@ -6,7 +6,7 @@ services:
     container_name: spring_astha_database
     environment:
       MYSQL_ROOT_PASSWORD: ${MY_SQL_ROOT}
-      MYSQL_DATABASE: employee_management_system
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     healthcheck:      
@@ -32,12 +32,9 @@ services:
                   condition: service_healthy
                        
     environment:      
-      SPRING_DATASOURCE_URL: jdbc:mysql://spring_astha_database:3306/employee_management_system?allowPublicKeyRetrieval=true&useSSL=false      
-      SPRING_DATASOURCE_USERNAME: astha      
-      SPRING_DATASOURCE_PASSWORD: astha
-    
-    #command: ["sh", "-c", "while ! nc -z spring_astha_database 3306; do sleep 1; done && java -jar app.jar"]  
-   
+      SPRING_DATASOURCE_URL: jdbc:mysql://spring_astha_database:3306/${MYSQL_DATABASE}?allowPublicKeyRetrieval=true&useSSL=false      
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}      
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
     
     networks:
      - asthaNetwork

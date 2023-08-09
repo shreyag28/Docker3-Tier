@@ -23,7 +23,7 @@ services:
      - asthaNetwork
      
   spring-boot-ems:
-    image: 172.27.59.80:8082/astha-github-actions/spring_app:1.0
+    image: 172.27.59.80:8082/astha-github-actions/spring_app:${RUN_NUMBER}
     container_name: spring-boot-ems
     ports:
       - 8085:8080

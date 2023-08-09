@@ -17,6 +17,8 @@ jobs:
 
     env:
      MY_SQL_ROOT: ${{ secrets.MY_SQL_ROOT_PASSWORD }}
+     MYSQL_USER: ${{ secrets.MYSQL_USER }}
+     MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD}}
 
 
     steps:

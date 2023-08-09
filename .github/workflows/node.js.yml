@@ -32,8 +32,8 @@ jobs:
       uses: actions/cache@v3
       with:
           path: ~/.npm
-          key: Angular-Cache-${{ github.run_number }}
-          restore-keys: Angular-Cache-${{ github.run_number }}
+          key: Angular-Cache-self-hosted
+          restore-keys: Angular-Cache-self-hosted
            
                  
     - name: Use Node.js       
@@ -60,8 +60,8 @@ jobs:
       uses: actions/cache@v3
       with:
           path: ~/.m2
-          key: Maven-Cache-${{ github.run_number }}
-          restore-keys: Maven-Cache-${{ github.run_number }}  
+          key: Maven-Cache-self-hosted
+          restore-keys: Maven-Cache-self-hosted
     - run: |
             cd spring-boot-ems
             mvn clean install

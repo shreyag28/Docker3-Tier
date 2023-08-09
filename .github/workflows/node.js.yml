@@ -32,8 +32,8 @@ jobs:
       uses: actions/cache@v3
       with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
+          key: Angular-Cache-${{ github.run_number }}
+          restore-keys: Angular-Cache-${{ github.run_number }}
            
                  
     - name: Use Node.js       
@@ -60,8 +60,8 @@ jobs:
       uses: actions/cache@v3
       with:
           path: ~/.m2
-          key: maven-cache
-          restore-keys: maven-cache   
+          key: Maven-Cache-${{ github.run_number }}
+          restore-keys: Maven-Cache-${{ github.run_number }}  
     - run: |
             cd spring-boot-ems
             mvn clean install

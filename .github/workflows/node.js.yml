@@ -20,7 +20,7 @@ jobs:
      MYSQL_USER: ${{ secrets.MYSQL_USER }}
      MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
      MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-     RUN_NUMBER: ${github.run_number}
+     RUN_NUMBER: ${{ github.run_number }}
 
 
     steps:
@@ -51,9 +51,9 @@ jobs:
 
     - run:  | 
              cd angular
-             docker build -t 172.27.59.80:8082/astha-github-actions/angular_app:${RUN_NUMBER} .
+             docker build -t 172.27.59.80:8082/astha-github-actions/angular_app:${{ github.run_number }} .
              docker login -u admin -p Cybage@123 http://172.27.59.80:8082
-             docker push 172.27.59.80:8082/astha-github-actions/angular_app:${RUN_NUMBER}
+             docker push 172.27.59.80:8082/astha-github-actions/angular_app:${{ github.run_number }}
  
     # - uses: actions/setup-java@v3
     #   with:

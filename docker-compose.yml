@@ -1,11 +1,11 @@
-version: '2.4'
+ version: '2.4'
 
 services:
   spring_astha_database:
     image: mysql
     container_name: spring_astha_database
     environment:
-      MYSQL_ROOT_PASSWORD: ${{secrets.MY_SQL_ROOT_PASSWORD}}
+      MYSQL_ROOT_PASSWORD: ${{ secrets.MY_SQL_ROOT_PASSWORD }}
       MYSQL_DATABASE: employee_management_system
       MYSQL_USER: astha
       MYSQL_PASSWORD: astha

@@ -16,7 +16,7 @@ jobs:
     runs-on: self-hosted
 
     env:
-     DOCKER_COMPOSE_FILE: ${{ secrets.MY_SQL_ROOT_PASSWORD }}
+     MY_SQL_ROOT: ${{ secrets.MY_SQL_ROOT_PASSWORD }}
 
 
     steps:
@@ -78,6 +78,6 @@ jobs:
             docker rm -f spring-boot-ems
             docker rm -f spring_astha_database
             docker rm -f angular
-            docker-compose -f $ DOCKER_COMPOSE_FILE up        
+            docker-compose up        
              
     

@@ -7,7 +7,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MY_SQL_ROOT}
       MYSQL_DATABASE: employee_management_system
-      MYSQL_USER: ${MYSQL_USER }
+      MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     healthcheck:      
       test: ["CMD", "mysqladmin", "ping", "-h", "spring_astha_database"]  # Or use the hostname of your MySQL container      

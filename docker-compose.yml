@@ -1,0 +1,57 @@
+version: '2.4'
+
+services:
+  spring_astha_database:
+    image: mysql
+    container_name: spring_astha_database
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MY_SQL_ROOT}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    healthcheck:      
+      test: ["CMD", "mysqladmin", "ping", "-h", "spring_astha_database"]  # Or use the hostname of your MySQL container      
+      interval: 10s      
+      timeout: 5s      
+      retries: 3  
+       
+    ports:
+      - 3308:3306
+    volumes:
+     - dockerAngularSpringDatabaseData:/var/lib/mysql
+    networks:
+     - asthaNetwork
+     
+  spring-boot-ems:
+    image: 172.27.59.80:8082/astha-github-actions/spring_app:${RUN_NUMBER}
+    container_name: spring-boot-ems
+    ports:
+      - 8085:8080
+    depends_on:
+      spring_astha_database:
+                  condition: service_healthy
+                       
+    environment:      
+      SPRING_DATASOURCE_URL: jdbc:mysql://spring_astha_database:3306/${MYSQL_DATABASE}?allowPublicKeyRetrieval=true&useSSL=false      
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}      
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+    
+    networks:
+     - asthaNetwork
+      
+  angular:
+    image: 172.27.59.80:8082/astha-github-actions/angular_app:${RUN_NUMBER}
+    container_name: angular
+    ports: 
+      - 4200:80
+    depends_on:
+      - spring-boot-ems
+    networks:
+      - asthaNetwork
+
+
+volumes:
+  dockerAngularSpringDatabaseData:
+  
+networks:
+  asthaNetwork:

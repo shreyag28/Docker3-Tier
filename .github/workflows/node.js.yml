@@ -1,0 +1,81 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: CI & CD for 3-Tier
+
+# on:
+#   push:
+#     branches: [ "master" ]
+on: 
+  workflow_dispatch
+
+
+jobs:
+  build:
+  
+    runs-on: self-hosted
+
+    env:
+     MY_SQL_ROOT: ${{ secrets.MY_SQL_ROOT_PASSWORD }}
+     MYSQL_USER: ${{ secrets.MYSQL_USER }}
+     MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+     MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+     RUN_NUMBER: ${{ github.run_number }}
+
+
+    steps:
+    - uses: actions/checkout@v3
+      with:      
+           token: ${{ secrets.GH_PAT }}
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v3
+      with:
+          path: ~/.npm
+          key: Angular-Cache-self-hosted
+          restore-keys: Angular-Cache-self-hosted
+           
+                 
+    - name: Use Node.js       
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14.x'
+    - run: |
+            cd angular 
+            npm install
+            npm run build
+
+    - run:  | 
+             cd angular
+             docker build -t 172.27.59.80:8082/astha-github-actions/angular_app:${{ github.run_number }} .
+             docker login -u admin -p Cybage@123 http://172.27.59.80:8082
+             docker push 172.27.59.80:8082/astha-github-actions/angular_app:${{ github.run_number }}
+ 
+    - uses: actions/setup-java@v3
+      with:
+       distribution: 'temurin'
+       java-version: '11'
+    - name: Cache Maven Dependencies
+      id: maven-cache
+      uses: actions/cache@v3
+      with:
+          path: ~/.m2
+          key: Maven-Cache-self-hosted
+          restore-keys: Maven-Cache-self-hosted
+    - run: |
+            cd spring-boot-ems
+            mvn clean install
+
+    - run:  | 
+             cd spring-boot-ems
+             docker build -t 172.27.59.80:8082/astha-github-actions/spring_app:${{ github.run_number }} .
+             docker login -u admin -p Cybage@123 http://172.27.59.80:8082
+             docker push 172.27.59.80:8082/astha-github-actions/spring_app:${{ github.run_number }}  
+             
+    - run: |
+            docker rm -f spring-boot-ems
+            docker rm -f spring_astha_database
+            docker rm -f angular
+            docker-compose up -d        
+             
+    

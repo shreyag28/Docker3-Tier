@@ -71,7 +71,7 @@ jobs:
       if: always()
       with:
        files: |
-          spring-boot-ems/target/**/*.xml
+          spring-boot-ems/target/surefire-reports/*.xml
         
             
     - name: SonarQube Scan

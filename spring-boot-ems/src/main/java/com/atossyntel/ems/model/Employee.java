@@ -20,6 +20,7 @@ public class Employee implements Serializable{
      private double salary;
      private String email;
      //private Date doj;
+     private Date doj;
      private String mobile;
      private String pan;
      
@@ -37,6 +38,18 @@ public class Employee implements Serializable{
 		this.mobile = mobile;
 		this.pan = pan;
 		//this.doj=new Date();
+    	 this.doj=new Date();
+     }
+
+	public Employee(String fname, String lname, double salary, String mobile, String pan) {
+		this.employeeId=new Random().nextInt(100000);
+		this.fname = fname;
+		this.lname = lname;
+		this.email=this.fname+"_"+this.lname+"@syntelinc.com";
+		this.salary = salary;
+		this.mobile = mobile;
+		this.pan = pan;
+		this.doj=new Date();
 	}
 
 	public int getEmployeeId() {
@@ -84,6 +97,8 @@ public class Employee implements Serializable{
 	 * 
 	 * public void setDoj(Date doj) { this.doj = doj; }
 	 */
+	
+
 	public String getMobile() {
 		return mobile;
 	}
@@ -102,11 +117,11 @@ public class Employee implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", fname=" + fname + ", lname=" + lname + ", salary=" + salary
-				+ ", email=" + email + ",  mobile=" + mobile + ", pan=" + pan + "]";
+		return "Employee [employeeId=" + employeeId + ", fname=" + fname + ", lname=" + lname + ", salary=" + salary + ", email=" + email + ",  mobile=" + mobile + ", pan=" + pan + "]";
+				
 	}
         
-     
+   
      
 	
 }

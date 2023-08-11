@@ -19,24 +19,24 @@ public class Employee implements Serializable{
      private String lname;
      private double salary;
      private String email;
-     private Date doj;
+     //private Date doj;
      private String mobile;
      private String pan;
      
      public Employee() {
     	 this.employeeId=new Random().nextInt(100000);
-    	 this.doj=new Date();
+    	 //this.doj=new Date();
      }
 
-	public Employee(String fname, String lname, double salary, String mobile, String pan) {
-		this.employeeId=new Random().nextInt(100000);
+	public Employee(int employeeId, String fname, String lname,String email, double salary, String mobile, String pan) {
+		this.employeeId= employeeId;
 		this.fname = fname;
 		this.lname = lname;
-		this.email=this.fname+"_"+this.lname+"@syntelinc.com";
+		this.email= email;
 		this.salary = salary;
 		this.mobile = mobile;
 		this.pan = pan;
-		this.doj=new Date();
+		//this.doj=new Date();
 	}
 
 	public int getEmployeeId() {
@@ -79,14 +79,11 @@ public class Employee implements Serializable{
 		this.email = email;
 	}
 
-	public Date getDoj() {
-		return doj;
-	}
-
-	public void setDoj(Date doj) {
-		this.doj = doj;
-	}
-
+	/*
+	 * public Date getDoj() { return doj; }
+	 * 
+	 * public void setDoj(Date doj) { this.doj = doj; }
+	 */
 	public String getMobile() {
 		return mobile;
 	}
@@ -106,7 +103,7 @@ public class Employee implements Serializable{
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", fname=" + fname + ", lname=" + lname + ", salary=" + salary
-				+ ", email=" + email + ", doj=" + doj + ", mobile=" + mobile + ", pan=" + pan + "]";
+				+ ", email=" + email + ",  mobile=" + mobile + ", pan=" + pan + "]";
 	}
         
      

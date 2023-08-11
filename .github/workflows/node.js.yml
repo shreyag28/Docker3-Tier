@@ -65,6 +65,9 @@ jobs:
     - run: |
             cd spring-boot-ems
             mvn clean install
+            
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master       
 
     - run:  | 
              cd spring-boot-ems

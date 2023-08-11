@@ -19,14 +19,13 @@ public class Employee implements Serializable{
      private String lname;
      private double salary;
      private String email;
-     //private Date doj;
-     private Date doj;
+   
      private String mobile;
      private String pan;
      
      public Employee() {
     	 this.employeeId=new Random().nextInt(100000);
-    	 //this.doj=new Date();
+    	 
      }
 
 	public Employee(int employeeId, String fname, String lname,String email, double salary, String mobile, String pan) {
@@ -37,20 +36,10 @@ public class Employee implements Serializable{
 		this.salary = salary;
 		this.mobile = mobile;
 		this.pan = pan;
-		//this.doj=new Date();
-    	 this.doj=new Date();
+		
      }
 
-	public Employee(String fname, String lname, double salary, String mobile, String pan) {
-		this.employeeId=new Random().nextInt(100000);
-		this.fname = fname;
-		this.lname = lname;
-		this.email=this.fname+"_"+this.lname+"@syntelinc.com";
-		this.salary = salary;
-		this.mobile = mobile;
-		this.pan = pan;
-		this.doj=new Date();
-	}
+	
 
 	public int getEmployeeId() {
 		return employeeId;

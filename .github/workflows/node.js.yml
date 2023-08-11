@@ -66,6 +66,14 @@ jobs:
             cd spring-boot-ems
             mvn clean install
             
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action/composite@v2
+      if: always()
+      with:
+       files: |
+          spring-boot-ems/target/**/*.xml
+        
+            
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       env:

@@ -22,7 +22,6 @@
   <th>MOBILE</th>
   <th>PAN</th>
   <th>EMAIL</th>
-  <th>DOJ</th>
   <th>EDIT</th>
   <th>DELETE</th>
 </tr>
@@ -36,7 +35,6 @@
   <td>{{e.mobile}}</td>
   <td>{{e.pan}}</td>
   <td>{{e.email}}</td>
-  <td>{{e.doj}}</td>
   <td> <a  [routerLink]="['/edit',e.employeeId]"> <input type="button" class="btn btn-success" value="EDIT" > </a> </td>
   <td> <a  [routerLink]="['/delete',e.employeeId ]" > <input type="button" class="btn btn-danger"  value="DELETE"> </a> </td>
     

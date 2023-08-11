@@ -48,7 +48,7 @@ jobs:
     - run:  | 
              cd angular
              docker build -t 172.27.59.80:8082/astha-github-actions/angular_app:${{ github.run_number }} .
-             docker login -u admin -p Cybage@123 http://172.27.59.80:8082
+             docker login -u ${{ secrets.JFROG_USERNAME }} -p ${{ secrets.JFROG_PASSWORD }} http://172.27.59.80:8082
              docker push 172.27.59.80:8082/astha-github-actions/angular_app:${{ github.run_number }}
  
     - uses: actions/setup-java@v3
@@ -75,13 +75,11 @@ jobs:
     - run:  | 
              cd spring-boot-ems
              docker build -t 172.27.59.80:8082/astha-github-actions/spring_app:${{ github.run_number }} .
-             docker login -u admin -p Cybage@123 http://172.27.59.80:8082
+             docker login -u ${{ secrets.JFROG_USERNAME }} -p ${{ secrets.JFROG_PASSWORD }} http://172.27.59.80:8082
              docker push 172.27.59.80:8082/astha-github-actions/spring_app:${{ github.run_number }}  
              
     - run: |
-            docker rm -f spring-boot-ems
-            docker rm -f spring_astha_database
-            docker rm -f angular
+            docker rm -f spring-boot-ems spring_astha_database angular
             docker-compose up -d        
              
     

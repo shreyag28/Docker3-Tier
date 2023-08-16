@@ -12,7 +12,7 @@ services:
     healthcheck:      
       test: ["CMD", "mysqladmin", "ping", "-h", "spring_astha_database"]  # Or use the hostname of your MySQL container      
       interval: 10s      
-      timeout: 5s      
+      timeout: 10s      
       retries: 3  
        
     ports:
